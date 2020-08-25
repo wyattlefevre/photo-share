@@ -22,7 +22,6 @@ Vue.use(VueRouter)
     name: 'photo',
     component: Photo
   }
-
 ]
 
 const router = new VueRouter({

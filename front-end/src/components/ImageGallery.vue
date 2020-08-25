@@ -1,33 +1,32 @@
 <template>
   <div>
     <section class="image-gallery">
-      <div class="image" v-for="photo in photos" v-bind:key="photo._id">
-        <router-link :to="{ name: 'photo', params: { id: photo._id }}"><img :src="photo.path" /></router-link>
+      <v-card tile class="image" v-for="photo in photos" v-bind:key="photo._id">
+        <router-link :to="{ name: 'photo', params: { id: photo._id } }"><img :src="photo.path"/></router-link>
         <div class="photoInfo">
-          <p class="photoTitle">{{photo.title}}</p>
-          <p class="photoName">{{photo.user.firstName}} {{photo.user.lastName}}</p>
+          <p class="photoTitle">{{ photo.title }}</p>
+          <p class="photoName font-weight-bold">{{ photo.user.firstName }} {{ photo.user.lastName }}</p>
         </div>
-        <p class="photoDate">{{formatDate(photo.created)}}</p>
-      </div>
+        <p class="photoDate">{{ formatDate(photo.created) }}</p>
+      </v-card>
     </section>
   </div>
 </template>
 
 <script>
-import moment from "moment";
+import moment from 'moment';
 
 export default {
-  name: "ImageGallery",
+  name: 'ImageGallery',
   props: {
-    photos: Array
+    photos: Array,
   },
   methods: {
     formatDate(date) {
-      if (moment(date).diff(Date.now(), "days") < 15)
-        return moment(date).fromNow();
-      else return moment(date).format("d MMMM YYYY");
-    }
-  }
+      if (moment(date).diff(Date.now(), 'days') < 15) return moment(date).fromNow();
+      else return moment(date).format('d MMMM YYYY');
+    },
+  },
 };
 </script>
 
@@ -40,11 +39,15 @@ export default {
 
 .photoInfo p {
   margin: 0px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
 .photoDate {
   font-size: 0.7em;
   font-weight: normal;
+  padding-left: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 p {
@@ -60,6 +63,7 @@ p {
 
 .image-gallery {
   column-gap: 1em;
+  margin: 1em;
 }
 
 .image {
