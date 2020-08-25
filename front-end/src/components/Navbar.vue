@@ -46,7 +46,7 @@ export default {
       drawer: false,
       links: [
         { text: 'Home', route: '/' },
-        { text: 'Dashboard', route: '/dashboard' },
+        { text: 'Account', route: '/dashboard' },
       ],
     };
   },

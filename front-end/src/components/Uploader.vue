@@ -10,13 +10,16 @@
           <fieldset>
             <textarea v-model="description" placeholder="Description"></textarea>
           </fieldset>
+          <v-alert type="error">
+            Please note, my server can only handle small photo uploads ( &lt; 1MB )
+          </v-alert>
           <fieldset>
             <div class="imageInput" @click="chooseImage">
               <img v-if="url" :src="url" />
               <div v-if="!url" class="placeholder">Choose an Image</div>
               <input class="fileInput" ref="fileInput" type="file" @input="fileChanged" />
             </div>
-            <p v-if="error" class="error">{{error}}</p>
+            <p v-if="error" class="error">{{ error }}</p>
           </fieldset>
           <div class="buttons">
             <button type="button" @click="close" class="pure-button">Close</button>
@@ -29,19 +32,19 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 export default {
-  name: "Uploader",
+  name: 'Uploader',
   props: {
-    show: Boolean
+    show: Boolean,
   },
   data() {
     return {
-      title: "",
-      description: "",
-      url: "",
+      title: '',
+      description: '',
+      url: '',
       file: null,
-      error: ""
+      error: '',
     };
   },
   methods: {
@@ -50,7 +53,7 @@ export default {
       this.url = URL.createObjectURL(this.file);
     },
     close() {
-      this.$emit("close");
+      this.$emit('close');
     },
     chooseImage() {
       this.$refs.fileInput.click();
@@ -58,20 +61,20 @@ export default {
     async upload() {
       try {
         const formData = new FormData();
-        formData.append("photo", this.file, this.file.name);
-        formData.append("title", this.title);
-        formData.append("description", this.description);
-        await axios.post("/api/photos", formData);
+        formData.append('photo', this.file, this.file.name);
+        formData.append('title', this.title);
+        formData.append('description', this.description);
+        await axios.post('/api/photos', formData);
         this.file = null;
-        this.url = "";
-        this.title = "";
-        this.description = "";
-        this.$emit("uploadFinished");
+        this.url = '';
+        this.title = '';
+        this.description = '';
+        this.$emit('uploadFinished');
       } catch (error) {
-        this.error = "Error: " + error.response.data.message;
+        this.error = 'Error: ' + error.response.data.message;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -3,7 +3,7 @@
     <v-row>
       <v-col>
         <v-card v-if="photo.user">
-          <v-img max-height="100vh" :src="photo.path"> </v-img>
+          <v-img contain max-height="100vh" :src="photo.path"> </v-img>
           <v-card-title>Title: {{ photo.title }}</v-card-title>
           <v-card-subtitle class="font-weight-black">User: {{ photo.user.firstName }} {{ photo.user.lastName }}</v-card-subtitle>
           <v-card-text>
