@@ -23,8 +23,8 @@
         </v-btn>
       </v-hover>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" fixed temporary dark color="secondary">
-      <v-toolbar color="primary">
+    <v-navigation-drawer v-model="drawer" fixed temporary >
+      <v-toolbar dark color="primary">
         <v-toolbar-title>
           <span class="font-weight-bold">Menu</span>
         </v-toolbar-title>
