@@ -1,17 +1,17 @@
 <template>
   <div class="main">
+
+    <v-container>
+      <v-row class="mb-2" justify="center">
+        <v-col class="text-center">
+          <div class="text-h5 mb-3">{{user.firstName}} {{user.lastName}}</div>
+          <v-btn @click="toggleUpload" color="accent" class="mr-3">Upload</v-btn>
+          <v-btn @click="logout" color="secondary">Logout</v-btn>
+        </v-col>
+      </v-row>
+      <hr>
+    </v-container>
     <div class="menu">
-      <p>
-        <a @click="toggleUpload">
-          <i class="fas fa-image"></i>
-        </a>
-      </p>
-      <h2>
-        {{user.firstName}} {{user.lastName}}
-        <a @click="logout">
-          <i class="fas fa-sign-out-alt"></i>
-        </a>
-      </h2>
       <uploader :show="show" @close="close" @uploadFinished="uploadFinished" />
     </div>
     <image-gallery :photos="photos" />

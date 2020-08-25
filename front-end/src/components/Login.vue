@@ -1,5 +1,14 @@
 <template>
   <div class="hero">
+    <v-snackbar v-model="snackbar" color="error">
+      {{ this.error || this.errorLogin }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="white" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
     <v-row justify="center">
       <v-col lg="6">
         <v-card color="white">
@@ -54,35 +63,6 @@
         </v-card>
       </v-col>
     </v-row>
-
-    <div class="heroBox">
-      <form class="pure-form">
-        <fieldset>
-          <legend>Register for an account</legend>
-          <input class="white" placeholder="first name" v-model="firstName" />
-          <input placeholder="last name" v-model="lastName" />
-        </fieldset>
-        <fieldset>
-          <input placeholder="username" v-model="username" />
-          <input type="password" placeholder="password" v-model="password" />
-        </fieldset>
-        <fieldset>
-          <button type="submit" class="pure-button pure-button-primary" @click.prevent="register">Register</button>
-        </fieldset>
-      </form>
-      <p v-if="error" class="error">{{ error }}</p>
-      <form class="pure-form space-above">
-        <fieldset>
-          <legend>Login</legend>
-          <input placeholder="username" v-model="usernameLogin" />
-          <input type="password" placeholder="password" v-model="passwordLogin" />
-        </fieldset>
-        <fieldset>
-          <button type="submit" class="pure-button pure-button-primary" @click.prevent="login">Login</button>
-        </fieldset>
-      </form>
-      <p v-if="errorLogin" class="error">{{ errorLogin }}</p>
-    </div>
   </div>
 </template>
 
@@ -100,6 +80,7 @@ export default {
       passwordLogin: '',
       error: '',
       errorLogin: '',
+      snackbar: false,
     };
   },
   methods: {
@@ -118,6 +99,7 @@ export default {
       } catch (error) {
         this.error = error.response.data.message;
         this.$root.$data.user = null;
+        this.snackbar = true;
       }
     },
     async login() {
@@ -133,51 +115,11 @@ export default {
       } catch (error) {
         this.errorLogin = 'Error: ' + error.response.data.message;
         this.$root.$data.user = null;
+        this.snackbar = true;
       }
     },
   },
 };
 </script>
 
-<style scoped>
-.space-above {
-  margin-top: 50px;
-}
-
-h1 {
-  font-size: 28px;
-  font-variant: capitalize;
-}
-
-/* .hero {
-  padding: 120px;
-  display: flex;
-  justify-content: center;
-} */
-
-.heroBox {
-  text-align: center;
-}
-
-.hero form {
-  font-size: 14px;
-}
-
-.hero form legend {
-  font-size: 20px;
-}
-
-input {
-  margin-right: 10px;
-}
-
-.error {
-  margin-top: 10px;
-  display: inline;
-  padding: 5px 20px;
-  border-radius: 30px;
-  font-size: 10px;
-  background-color: #d9534f;
-  color: #fff;
-}
-</style>
+<style scoped></style>

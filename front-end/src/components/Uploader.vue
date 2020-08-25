@@ -20,7 +20,7 @@
           </fieldset>
           <div class="buttons">
             <button type="button" @click="close" class="pure-button">Close</button>
-            <button type="submit" class="pure-button pure-button-primary right">Upload</button>
+            <button type="submit" class="pure-button primary white--text right">Upload</button>
           </div>
         </form>
       </div>
@@ -104,14 +104,6 @@ export default {
   transition: all 0.5s ease;
 }
 
-/*
-* The following styles are auto-applied to elements with
-* transition="modal" when their visibility is toggled
-* by Vue.js.
-*
-* You can easily play with the modal transition by editing
-* these styles.
-*/
 .modal-enter {
   opacity: 0;
 }

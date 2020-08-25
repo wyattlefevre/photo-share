@@ -1,25 +1,16 @@
 <template>
   <div>
     <section class="image-gallery">
-      <!-- <v-card tile class="image" v-for="photo in photos" v-bind:key="photo._id">
-        <router-link :to="{ name: 'photo', params: { id: photo._id } }"><v-img :src="photo.path"/></router-link>
-        <div class="photoInfo">
-          <p class="photoTitle">{{ photo.title }}</p>
-          <p class="photoName font-weight-bold">{{ photo.user.firstName }} {{ photo.user.lastName }}</p>
-        </div>
-        <p class="photoDate">{{ formatDate(photo.created) }}</p>
-      </v-card> -->
-
       <router-link v-for="photo in photos" v-bind:key="photo._id" :to="{ name: 'photo', params: { id: photo._id } }">
-        <v-card class="image" >
+        <v-card class="image">
           <v-img :src="photo.path" />
-          <v-card-text>
-            <div class="photoInfo">
-              <p class="photoTitle">{{ photo.title }}</p>
-              <p class="photoName font-weight-bold">{{ photo.user.firstName }} {{ photo.user.lastName }}</p>
-            </div>
-            <p class="photoDate">{{ formatDate(photo.created) }}</p>
-          </v-card-text>
+          <v-card-title>
+            {{ photo.title }}
+          </v-card-title>
+          <v-card-subtitle>
+            <p>{{ photo.user.firstName }} {{ photo.user.lastName }}</p>
+            <p>{{ formatDate(photo.created) }}</p>
+          </v-card-subtitle>
         </v-card>
       </router-link>
     </section>
@@ -44,25 +35,6 @@ export default {
 </script>
 
 <style scoped>
-.photoInfo {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.8em;
-}
-
-.photoInfo p {
-  margin: 0px;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-}
-
-.photoDate {
-  font-size: 0.7em;
-  font-weight: normal;
-  padding-left: 0.5em;
-  margin-bottom: 0.5em;
-}
-
 p {
   margin: 0px;
 }
