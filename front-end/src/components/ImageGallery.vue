@@ -1,14 +1,27 @@
 <template>
   <div>
     <section class="image-gallery">
-      <v-card tile class="image" v-for="photo in photos" v-bind:key="photo._id">
-        <router-link :to="{ name: 'photo', params: { id: photo._id } }"><img :src="photo.path"/></router-link>
+      <!-- <v-card tile class="image" v-for="photo in photos" v-bind:key="photo._id">
+        <router-link :to="{ name: 'photo', params: { id: photo._id } }"><v-img :src="photo.path"/></router-link>
         <div class="photoInfo">
           <p class="photoTitle">{{ photo.title }}</p>
           <p class="photoName font-weight-bold">{{ photo.user.firstName }} {{ photo.user.lastName }}</p>
         </div>
         <p class="photoDate">{{ formatDate(photo.created) }}</p>
-      </v-card>
+      </v-card> -->
+
+      <router-link v-for="photo in photos" v-bind:key="photo._id" :to="{ name: 'photo', params: { id: photo._id } }">
+        <v-card class="image" >
+          <v-img :src="photo.path" />
+          <v-card-text>
+            <div class="photoInfo">
+              <p class="photoTitle">{{ photo.title }}</p>
+              <p class="photoName font-weight-bold">{{ photo.user.firstName }} {{ photo.user.lastName }}</p>
+            </div>
+            <p class="photoDate">{{ formatDate(photo.created) }}</p>
+          </v-card-text>
+        </v-card>
+      </router-link>
     </section>
   </div>
 </template>
