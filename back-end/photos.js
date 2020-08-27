@@ -96,6 +96,9 @@ router.get("/:id", async (req,res) => {
     }
 });
 
+//delete photo by id and all associated comments
+//TODO
+
 module.exports = {
     model: Photo,
     routes: router,

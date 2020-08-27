@@ -22,7 +22,7 @@
         <div class="text-h4">Comments</div>
       </v-col>
     </v-row>
-    <v-row justify="left" v-if="user">
+    <v-row justify="start" v-if="user">
       <v-col>
         <div class="text-h6 mb-4">Add a comment</div>
         <v-textarea

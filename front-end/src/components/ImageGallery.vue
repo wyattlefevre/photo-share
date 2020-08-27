@@ -3,7 +3,7 @@
     <section class="image-gallery">
       <router-link v-for="photo in photos" v-bind:key="photo._id" :to="{ name: 'photo', params: { id: photo._id } }">
         <v-card class="image">
-          <v-img :src="photo.path" />
+          <img :src="photo.path" />
           <v-card-title>
             {{ photo.title }}
           </v-card-title>
